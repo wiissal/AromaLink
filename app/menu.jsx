@@ -108,3 +108,28 @@ export default function Menu() {
       image: turkish,
     },
   ];
+  // Filter products based on selected category
+  const filteredProducts = coffeeProducts.filter(
+    (product) =>
+      (selectedCategory === "All" || product.category === selectedCategory) &&
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const categories = [
+    "All",
+    "Cappuccino",
+    "Cappuccino Caramel",
+    "Esspresso",
+    "Latte",
+    "Americano",
+    "Mocha",
+    "Iced Coffee",
+    "Turkish Coffee",
+  ];
+
+  const handleProductPress = (product) => {
+    console.log("Product clicked:", product.name);
+    console.log("Product ID:", product.id);
+    console.log("Navigating to: /product/" + product.id);
+    router.push("/product/" + product.id);
+  };
