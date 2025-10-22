@@ -232,3 +232,25 @@ return (
               </TouchableOpacity>
             ))}
           </View>
+          {/* Special Section */}
+          <View style={styles.specialSection}>
+            <Text style={styles.specialTitle}>Special Only For You</Text>
+            <View style={styles.specialCard}>
+              <Text style={styles.specialText}>
+                5 Coffee Beans You {"\n"}Must Try!
+              </Text>
+              <Image
+                source={{
+                  uri: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400",
+                }}
+                style={styles.specialImage}
+              />
+            </View>
+          </View>
+
+          <View style={styles.bottomPadding} />
+        </ScrollView>
+      </View>
+    </ImageBackground>
+  );
+}
