@@ -23,9 +23,9 @@ import { useRouter } from "expo-router";
 
 export default function Menu() {
   const router = useRouter();
-  const [selectedCategory, setSelectedCategory] = useState("All"); // State for selected category
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query (search bar)
-  // Coffee products data
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+
   const coffeeProducts = [
     {
       id: "1",
@@ -108,7 +108,7 @@ export default function Menu() {
       image: turkish,
     },
   ];
-  // Filter products based on selected category
+
   const filteredProducts = coffeeProducts.filter(
     (product) =>
       (selectedCategory === "All" || product.category === selectedCategory) &&
@@ -126,208 +126,203 @@ export default function Menu() {
     "Iced Coffee",
     "Turkish Coffee",
   ];
-  //Navigation handler for product details
+
   const handleProductPress = (product) => {
     console.log("Product clicked:", product.name);
-    console.log("Navigating to: /product/" + product.id);
     router.push("/product/" + product.id);
   };
 
   const handleGoHome = () => {
-    console.log("Navigating to home page");
     router.push("/");
   };
 
   const handleGoToCart = () => {
-    console.log("Navigating to cart page");
     alert("Cart feature coming soon!");
-    // router.push("/cart"); // Uncomment when cart page is ready
   };
 
   return (
-    <ImageBackground
-      source={{
-        uri: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200",
-      }}
-      style={styles.backgroundImage}
-      imageStyle={styles.backgroundImageStyle}
-    >
-      <View style={styles.overlay}>
-        <ScrollView
-          style={styles.scrollView}
-          showsVerticalScrollIndicator={true}
-        >
-          {/* Header */}
-          <View style={styles.header}>
-            <Text style={styles.headerTitle}>Find the best</Text>
-            <Text style={styles.headerTitle}>Coffee for you</Text>
-          </View>
-
-          {/* Search Bar */}
-          <TextInput
-            style={styles.searchBar}
-            placeholder="Search your favorite drink..."
-            placeholderTextColor="#fffdfdff"
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-          />
-          {/* Category Tabs Clickable */}
+    <View style={styles.container}>
+      <ImageBackground
+        source={{
+          uri: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200",
+        }}
+        style={styles.backgroundImage}
+        imageStyle={styles.backgroundImageStyle}
+      >
+        <View style={styles.overlay}>
           <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={styles.categoryScrollView}
+            style={styles.scrollView}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContent}
           >
-            {/* Category Tabs */}
-            <View style={styles.categoryTabs}>
-              {categories.map((category) => (
-                <TouchableOpacity
-                  key={category}
-                  style={[
-                    styles.categoryTab,
-                    selectedCategory === category && styles.categoryTabActive,
-                  ]}
-                  onPress={() => setSelectedCategory(category)}
-                >
-                  <Text
+            {/* HEADER */}
+            <View style={styles.header}>
+              <Text style={styles.headerTitle}>Find the best</Text>
+              <Text style={styles.headerTitle}>Coffee for you</Text>
+            </View>
+
+            {/* SEARCH BAR */}
+            <TextInput
+              style={styles.searchBar}
+              placeholder="Search your favorite drink..."
+              placeholderTextColor="#999"
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+            />
+
+            {/* CATEGORY TABS */}
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.categoryScrollView}
+            >
+              <View style={styles.categoryTabs}>
+                {categories.map((category) => (
+                  <TouchableOpacity
+                    key={category}
                     style={[
-                      styles.categoryText,
-                      selectedCategory === category &&
-                        styles.categoryTextActive,
+                      styles.categoryTab,
+                      selectedCategory === category && styles.categoryTabActive,
                     ]}
+                    onPress={() => setSelectedCategory(category)}
                   >
-                    {category}
-                  </Text>
-                  {selectedCategory === category && (
-                    <View style={styles.categoryDot} />
-                  )}
+                    <Text
+                      style={[
+                        styles.categoryText,
+                        selectedCategory === category &&
+                          styles.categoryTextActive,
+                      ]}
+                    >
+                      {category}
+                    </Text>
+                    {selectedCategory === category && (
+                      <View style={styles.categoryDot} />
+                    )}
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </ScrollView>
+
+            {/* PRODUCTS GRID */}
+            <View style={styles.productsContainer}>
+              {filteredProducts.map((product) => (
+                <TouchableOpacity
+                  key={product.id}
+                  style={styles.productCard}
+                  onPress={() => handleProductPress(product)}
+                  activeOpacity={0.8}
+                >
+                  <Image source={product.image} style={styles.productImage} />
+
+                  <View style={styles.ratingBadge}>
+                    <Text style={styles.ratingText}>⭐ {product.rating}</Text>
+                  </View>
+
+                  <View style={styles.productInfo}>
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productSubtitle}>{product.subtitle}</Text>
+
+                    <View style={styles.priceRow}>
+                      <Text style={styles.price}>
+                        MAD {product.price.toFixed(2)}
+                      </Text>
+                      <TouchableOpacity
+                        style={styles.addButton}
+                        onPress={(e) => {
+                          e.stopPropagation();
+                          alert(`Added ${product.name} to cart!`);
+                        }}
+                      >
+                        <Text style={styles.addButtonText}>+</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                 </TouchableOpacity>
               ))}
             </View>
           </ScrollView>
-          {/* Products Grid */}
-          <View style={styles.productsContainer}>
-            {filteredProducts.map((product) => (
-              <TouchableOpacity
-                key={product.id}
-                style={styles.productCard}
-                onPress={() => handleProductPress(product)}
-                activeOpacity={1}
-              >
-                <Image source={product.image} style={styles.productImage} />
 
-                {/* Rating Badge */}
-                <View style={styles.ratingBadge}>
-                  <Text style={styles.ratingText}>⭐ {product.rating}</Text>
-                </View>
+          {/* BOTTOM NAVIGATION BAR */}
+          <View style={styles.bottomNav}>
+            <TouchableOpacity 
+              style={styles.navButton} 
+              onPress={handleGoHome}
+            >
+              <Text style={styles.navText}>Home</Text>
+            </TouchableOpacity>
 
-                {/* Product Info */}
-                <View style={styles.productInfo}>
-                  <Text style={styles.productName}>{product.name}</Text>
-                  <Text style={styles.productSubtitle}>{product.subtitle}</Text>
-
-                  <View style={styles.priceRow}>
-                    <Text style={styles.price}>
-                      MAD {product.price.toFixed(2)}
-                    </Text>
-                    <TouchableOpacity
-                      style={styles.addButton}
-                      onPress={(e) => {
-                        e.stopPropagation();
-                        alert(`Added ${product.name} to cart!`);
-                      }}
-                    >
-                      <Text style={styles.addButtonText}>+</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            ))}
+            <TouchableOpacity 
+              style={styles.navButton} 
+              onPress={handleGoToCart}
+            >
+              <Text style={styles.navText}>Cart</Text>
+            </TouchableOpacity>
           </View>
-          {/* Special Section */}
-          <View style={styles.specialSection}>
-            <Text style={styles.specialTitle}>Special Only For You</Text>
-            <View style={styles.specialCard}>
-              <Text style={styles.specialText}>
-                5 Coffee Beans You {"\n"}Must Try!
-              </Text>
-              <Image
-                source={{
-                  uri: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400",
-                }}
-                style={styles.specialImage}
-              />
-            </View>
-          </View>
-
-          <View style={styles.bottomPadding} />
-        </ScrollView>
-      </View>
-    </ImageBackground>
+        </View>
+      </ImageBackground>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#0C0F14",
+  },
   backgroundImage: {
     flex: 1,
   },
   backgroundImageStyle: {
-    opacity: 0.50,
+    opacity: 0.15,
   },
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(5, 5, 5, 0.51)",
+    backgroundColor: "rgba(5, 5, 5, 0.4)",
   },
   scrollView: {
-    paddingHorizontal: 10,
+    flex: 1,
+    paddingHorizontal: 15,
   },
-  bottomPadding: {
-    height: 30,
+  scrollContent: {
+    paddingBottom: 100,
   },
   header: {
-    marginTop: 60,
+    marginTop: 50,
     marginBottom: 20,
   },
   headerTitle: {
     fontSize: 32,
     fontWeight: "bold",
     color: "#FFFFFF",
-    fontStyle: "italic",
   },
   searchBar: {
-    backgroundColor: "#847d78ff",
-    opacity: 0.9,
+    backgroundColor: "#262B33",
     color: "#fff",
     paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 10,
-    fontSize: 16,
-    marginHorizontal: 10,
-    marginBottom: 15,
+    paddingVertical: 12,
+    borderRadius: 12,
+    fontSize: 14,
+    marginBottom: 20,
   },
   categoryScrollView: {
-    marginBottom: 10,
+    marginBottom: 20,
   },
   categoryTabs: {
     flexDirection: "row",
     gap: 25,
-    paddingRight: 20,
   },
   categoryTab: {
     paddingHorizontal: 4,
     paddingVertical: 8,
     alignItems: "center",
   },
-  categoryTabActive: {
-    paddingHorizontal: 4,
-    paddingVertical: 8,
-  },
   categoryText: {
-    color: "#adb0b6ff",
+    color: "#52555A",
     fontSize: 14,
     fontWeight: "500",
   },
   categoryTextActive: {
-    color: "#cdb09eff",
+    color: "#D17842",
     fontSize: 14,
     fontWeight: "bold",
   },
@@ -342,12 +337,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    marginBottom: 20,
   },
   productCard: {
     width: "48%",
-    backgroundColor: "#1419219a",
-    borderRadius: 20,
+    backgroundColor: "#252A32",
+    borderRadius: 16,
     marginBottom: 15,
     overflow: "hidden",
   },
@@ -360,10 +354,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 8,
     right: 8,
-    backgroundColor: "rgba(0,0,0,0.6)",
+    backgroundColor: "rgba(0,0,0,0.7)",
     paddingHorizontal: 8,
     paddingVertical: 4,
-    borderRadius: 10,
+    borderRadius: 8,
   },
   ratingText: {
     color: "#FFFFFF",
@@ -381,7 +375,7 @@ const styles = StyleSheet.create({
   },
   productSubtitle: {
     color: "#AEAEAE",
-    fontSize: 13,
+    fontSize: 12,
     marginBottom: 10,
   },
   priceRow: {
@@ -390,7 +384,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   price: {
-    color: "#a65a2bff",
+    color: "#D17842",
     fontSize: 18,
     fontWeight: "bold",
   },
@@ -398,7 +392,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D17842",
     width: 32,
     height: 32,
-    borderRadius: 10,
+    borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -407,41 +401,30 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  emptyContainer: {
+  bottomNav: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 70,
+    backgroundColor: "#0C0F14",
+    flexDirection: "row",
+    justifyContent: "space-around",
     alignItems: "center",
-    padding: 20,
+    borderTopWidth: 1,
+    borderTopColor: "#252A32",
+    paddingBottom: 10,
   },
-  emptyText: {
+  navButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 8,
+  },
+ 
+  navText: {
     color: "#AEAEAE",
-    fontSize: 16,
-  },
-  specialSection: {
-    marginBottom: 30,
-  },
-  specialTitle: {
-    color: "#FFFFFF",
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 12,
-  },
-  specialCard: {
-    backgroundColor: "#141921c1",
-    padding: 20,
-    borderRadius: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 15,
-  },
-  specialImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 12,
-    position: "absolute",
-  },
-  specialText: {
-    color: "#FFFFFF",
-    fontSize: 18,
-    fontWeight: "bold",
-    marginLeft: 80,
+
   },
 });
