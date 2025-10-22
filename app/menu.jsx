@@ -133,3 +133,30 @@ export default function Menu() {
     console.log("Navigating to: /product/" + product.id);
     router.push("/product/" + product.id);
   };
+return (
+    <ImageBackground
+      source={{
+        uri: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200",
+      }}
+      style={styles.backgroundImage}
+      imageStyle={styles.backgroundImageStyle}
+    >
+      <View style={styles.overlay}>
+        <ScrollView
+          style={styles.scrollView}
+          showsVerticalScrollIndicator={true}
+        >
+          {/* Header */}
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>Find the best</Text>
+            <Text style={styles.headerTitle}>Coffee for you</Text>
+          </View>
+
+          {/* Search Bar */}
+          <TextInput
+            style={styles.searchBar}
+            placeholder="Search your favorite drink..."
+            placeholderTextColor="#fffdfdff"
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
