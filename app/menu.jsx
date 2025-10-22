@@ -160,3 +160,36 @@ return (
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
+          {/* Category Tabs Clickable */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.categoryScrollView}
+          >
+            {/* Category Tabs */}
+            <View style={styles.categoryTabs}>
+              {categories.map((category) => (
+                <TouchableOpacity
+                  key={category}
+                  style={[
+                    styles.categoryTab,
+                    selectedCategory === category && styles.categoryTabActive,
+                  ]}
+                  onPress={() => setSelectedCategory(category)}
+                >
+                  <Text
+                    style={[
+                      styles.categoryText,
+                      selectedCategory === category &&
+                        styles.categoryTextActive,
+                    ]}
+                  >
+                    {category}
+                  </Text>
+                  {selectedCategory === category && (
+                    <View style={styles.categoryDot} />
+                  )}
+                </TouchableOpacity>
+              ))}
+            </View>
+          </ScrollView>
