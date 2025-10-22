@@ -193,3 +193,42 @@ return (
               ))}
             </View>
           </ScrollView>
+          {/* Products Grid */}
+          <View style={styles.productsContainer}>
+            {filteredProducts.map((product) => (
+              <TouchableOpacity
+                key={product.id}
+                style={styles.productCard}
+                onPress={() => handleProductPress(product)}
+                activeOpacity={1}
+              >
+                <Image source={product.image} style={styles.productImage} />
+
+                {/* Rating Badge */}
+                <View style={styles.ratingBadge}>
+                  <Text style={styles.ratingText}>⭐ {product.rating}</Text>
+                </View>
+
+                {/* Product Info */}
+                <View style={styles.productInfo}>
+                  <Text style={styles.productName}>{product.name}</Text>
+                  <Text style={styles.productSubtitle}>{product.subtitle}</Text>
+
+                  <View style={styles.priceRow}>
+                    <Text style={styles.price}>
+                      MAD {product.price.toFixed(2)}
+                    </Text>
+                    <TouchableOpacity
+                      style={styles.addButton}
+                      onPress={(e) => {
+                        e.stopPropagation();
+                        alert(`Added ${product.name} to cart!`);
+                      }}
+                    >
+                      <Text style={styles.addButtonText}>+</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
