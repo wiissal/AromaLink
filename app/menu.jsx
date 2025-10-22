@@ -396,3 +396,41 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+  emptyContainer: {
+    alignItems: "center",
+    padding: 20,
+  },
+  emptyText: {
+    color: "#AEAEAE",
+    fontSize: 16,
+  },
+  specialSection: {
+    marginBottom: 30,
+  },
+  specialTitle: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 12,
+  },
+  specialCard: {
+    backgroundColor: "#141921c1",
+    padding: 20,
+    borderRadius: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 15,
+  },
+  specialImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 12,
+    position: "absolute",
+  },
+  specialText: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginLeft: 80,
+  },
+});
