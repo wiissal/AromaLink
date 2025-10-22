@@ -254,3 +254,42 @@ return (
     </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+  },
+  backgroundImageStyle: {
+    opacity: 0.15,
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(5, 5, 5, 0.41)",
+  },
+  scrollView: {
+    paddingHorizontal: 10,
+  },
+  bottomPadding: {
+    height: 30,
+  },
+  header: {
+    marginTop: 60,
+    marginBottom: 20,
+  },
+  headerTitle: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+    fontStyle: "italic",
+  },
+  searchBar: {
+    backgroundColor: "#847d78ff",
+    opacity: 0.9,
+    color: "#fff",
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 10,
+    fontSize: 16,
+    marginHorizontal: 10,
+    marginBottom: 15,
+  },
