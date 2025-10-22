@@ -293,3 +293,37 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginBottom: 15,
   },
+  categoryScrollView: {
+    marginBottom: 10,
+  },
+  categoryTabs: {
+    flexDirection: "row",
+    gap: 25,
+    paddingRight: 20,
+  },
+  categoryTab: {
+    paddingHorizontal: 4,
+    paddingVertical: 8,
+    alignItems: "center",
+  },
+  categoryTabActive: {
+    paddingHorizontal: 4,
+    paddingVertical: 8,
+  },
+  categoryText: {
+    color: "#52555A",
+    fontSize: 14,
+    fontWeight: "500",
+  },
+  categoryTextActive: {
+    color: "#7a4b2eff",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  categoryDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: "#D17842",
+    marginTop: 4,
+  },
