@@ -129,15 +129,19 @@ export default function Menu() {
 
   const handleProductPress = (product) => {
     console.log("Product clicked:", product.name);
-    router.push("/product/" + product.id);
+    console.log("Navigating to product ID:", product.id);
+    router.push(`/product/${product.id}`);
   };
 
   const handleGoHome = () => {
+    console.log("Going to home page");
     router.push("/");
   };
 
   const handleGoToCart = () => {
+    console.log("Going to cart");
     alert("Cart feature coming soon!");
+    // router.push("/cart"); // Uncomment when you create cart page
   };
 
   return (
@@ -242,20 +246,22 @@ export default function Menu() {
             </View>
           </ScrollView>
 
-          {/* BOTTOM NAVIGATION BAR */}
-          <View style={styles.bottomNav}>
+          {/* BOTTOM BUTTONS - Home & Cart */}
+          <View style={styles.bottomButtons}>
             <TouchableOpacity 
-              style={styles.navButton} 
+              style={styles.homeButton} 
               onPress={handleGoHome}
+              activeOpacity={0.7}
             >
-              <Text style={styles.navText}>Home</Text>
+              <Text style={styles.buttonText}>Home</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
-              style={styles.navButton} 
+              style={styles.cartButton} 
               onPress={handleGoToCart}
-            >
-              <Text style={styles.navText}>Cart</Text>
+              activeOpacity={0.7}
+            >             
+              <Text style={styles.buttonText}>Check Card</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -267,7 +273,7 @@ export default function Menu() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0C0F14",
+    backgroundColor: "#4b4f5540",
   },
   backgroundImage: {
     flex: 1,
@@ -296,7 +302,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   searchBar: {
-    backgroundColor: "#262B33",
+    backgroundColor: "#65686bff",
     color: "#fff",
     paddingHorizontal: 15,
     paddingVertical: 12,
@@ -317,12 +323,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   categoryText: {
-    color: "#52555A",
+    color: "#bebfc1ff",
     fontSize: 14,
     fontWeight: "500",
   },
   categoryTextActive: {
-    color: "#D17842",
+    color: "#e1a986ff",
     fontSize: 14,
     fontWeight: "bold",
   },
@@ -401,30 +407,42 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  bottomNav: {
+  bottomButtons: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    height: 70,
-    backgroundColor: "#0C0F14",
     flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
+    gap: 15,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    backgroundColor: "#0e10128d",
     borderTopWidth: 1,
     borderTopColor: "#252A32",
-    paddingBottom: 10,
   },
-  navButton: {
+  homeButton: {
+    flex: 1,
+    backgroundColor: "#252A32",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 8,
+    paddingVertical: 14,
+    borderRadius: 12,
+    gap: 8,
   },
- 
-  navText: {
-    color: "#AEAEAE",
-    fontSize: 20,
+  cartButton: {
+    flex: 1,
+    backgroundColor: "#D17842",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 14,
+    borderRadius: 12,
+    gap: 8,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 15,
     fontWeight: "bold",
-
   },
 });
