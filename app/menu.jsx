@@ -14,7 +14,7 @@ import Mocha from "../assets/Mocha.jpg";
 import Americano from "../assets/Americano.jpg";
 import Latte from "../assets/Latte.jpg";
 import Esspresso from "../assets/Esspresso.jpg";
-import CappuccinoCaramel from "../assets/Cappuccino Caramel.jpg";
+import CappuccinoCaramel from "../assets/CappuccinoCaramel.jpg";
 import Cappuccino from "../assets/Cappuccino.jpg";
 import Icedcoffee from "../assets/Icedcoffee.jpg";
 import turkish from "../assets/turkish.jpg";
@@ -126,14 +126,25 @@ export default function Menu() {
     "Iced Coffee",
     "Turkish Coffee",
   ];
-
+  //Navigation handler for product details
   const handleProductPress = (product) => {
     console.log("Product clicked:", product.name);
-    console.log("Product ID:", product.id);
     console.log("Navigating to: /product/" + product.id);
     router.push("/product/" + product.id);
   };
-return (
+
+  const handleGoHome = () => {
+    console.log("Navigating to home page");
+    router.push("/");
+  };
+
+  const handleGoToCart = () => {
+    console.log("Navigating to cart page");
+    alert("Cart feature coming soon!");
+    // router.push("/cart"); // Uncomment when cart page is ready
+  };
+
+  return (
     <ImageBackground
       source={{
         uri: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200",
@@ -260,11 +271,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backgroundImageStyle: {
-    opacity: 0.15,
+    opacity: 0.50,
   },
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(5, 5, 5, 0.41)",
+    backgroundColor: "rgba(5, 5, 5, 0.51)",
   },
   scrollView: {
     paddingHorizontal: 10,
@@ -311,12 +322,12 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   categoryText: {
-    color: "#52555A",
+    color: "#adb0b6ff",
     fontSize: 14,
     fontWeight: "500",
   },
   categoryTextActive: {
-    color: "#7a4b2eff",
+    color: "#cdb09eff",
     fontSize: 14,
     fontWeight: "bold",
   },
