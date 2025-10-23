@@ -18,9 +18,14 @@ import CappuccinoCaramel from "../assets/CappuccinoCaramel.jpg";
 import Cappuccino from "../assets/Cappuccino.jpg";
 import Icedcoffee from "../assets/Icedcoffee.jpg";
 import turkish from "../assets/turkish.jpg";
+<<<<<<< HEAD
 import { Entypo } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+=======
+import { Entypo } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
 
 import { useRouter } from "expo-router";
 
@@ -30,7 +35,10 @@ export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
   const coffeeProducts = [
     {
       id: "1",
@@ -134,14 +142,27 @@ export default function Menu() {
 
   const handleProductPress = (product) => {
     console.log("Product clicked:", product.name);
+<<<<<<< HEAD
     router.push("/product/" + product.id);
   };
 
   const handleGoHome = () => {
+=======
+    console.log("Navigating to product ID:", product.id);
+    router.push(`/product/${product.id}`);
+  };
+
+  const handleGoHome = () => {
+    console.log("Going to home page");
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
     router.push("/");
   };
 
   const handleGoToCart = () => {
+<<<<<<< HEAD
+=======
+    console.log("Going to cart");
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
     alert("Cart feature coming soon!");
   };
 
@@ -225,7 +246,13 @@ export default function Menu() {
 
                   <View style={styles.productInfo}>
                     <Text style={styles.productName}>{product.name}</Text>
+<<<<<<< HEAD
                     <Text style={styles.productSubtitle}>{product.subtitle}</Text>
+=======
+                    <Text style={styles.productSubtitle}>
+                      {product.subtitle}
+                    </Text>
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
 
                     <View style={styles.priceRow}>
                       <Text style={styles.price}>
@@ -247,6 +274,7 @@ export default function Menu() {
             </View>
           </ScrollView>
 
+<<<<<<< HEAD
           {/* BOTTOM NAVIGATION BAR */}
 <View style={[styles.bottomNav, { marginBottom: insets.bottom + 10 }]}>
   <TouchableOpacity onPress={handleGoHome} style={styles.navButton}>
@@ -260,6 +288,22 @@ export default function Menu() {
   </TouchableOpacity>
 </View>
 
+=======
+          {/* BOTTOM BUTTONS - Home & Cart */}
+          <View
+            style={[styles.bottomNav, { marginBottom: insets.bottom + 10 }]}
+          >
+            <TouchableOpacity onPress={handleGoHome} style={styles.navButton}>
+              <Entypo name="home" size={28} color="#D17842" />
+              <Text style={styles.navText}>Home</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={handleGoToCart} style={styles.navButton}>
+              <Entypo name="shopping-cart" size={28} color="#D17842" />
+              <Text style={styles.navText}>Cart</Text>
+            </TouchableOpacity>
+          </View>
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
         </View>
       </ImageBackground>
     </View>
@@ -269,7 +313,11 @@ export default function Menu() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+<<<<<<< HEAD
     backgroundColor: "#0C0F14",
+=======
+    backgroundColor: "#4b4f5540",
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
   },
   backgroundImage: {
     flex: 1,
@@ -298,7 +346,11 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   searchBar: {
+<<<<<<< HEAD
     backgroundColor: "#262B33",
+=======
+    backgroundColor: "#65686bff",
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
     color: "#fff",
     paddingHorizontal: 15,
     paddingVertical: 12,
@@ -319,12 +371,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   categoryText: {
+<<<<<<< HEAD
     color: "#52555A",
+=======
+    color: "#bebfc1ff",
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
     fontSize: 14,
     fontWeight: "500",
   },
   categoryTextActive: {
+<<<<<<< HEAD
     color: "#D17842",
+=======
+    color: "#e1a986ff",
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
     fontSize: 14,
     fontWeight: "bold",
   },
@@ -403,6 +463,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+<<<<<<< HEAD
   bottomNav: {
   position: "absolute",
   bottom: -17,
@@ -436,3 +497,54 @@ navText: {
 },
 
 });
+=======
+  bottomButtons: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    flexDirection: "row",
+    gap: 15,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    backgroundColor: "#0e10128d",
+    borderTopWidth: 1,
+    borderTopColor: "#252A32",
+  },
+  bottomNav: {
+    position: "absolute",
+    bottom: -17,
+    left: 0,
+    right: 0,
+    height: 60,
+    backgroundColor: "#0C0F14", // dark background
+    flexDirection: "row",
+    justifyContent: "space-evenly", // evenly space icons
+    alignItems: "center",
+    borderTopWidth: 1,
+    borderTopColor: "#252A32",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    elevation: 10, // for Android shadow
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: -2 },
+    shadowRadius: 5,
+  },
+  navButton: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  navText: {
+    color: "#D17842",
+    fontSize: 12,
+    marginTop: 4,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+});
+>>>>>>> 7d020c70bc3aba90219784351c936854547dd18b
