@@ -3,6 +3,7 @@
 // ============================================
 
 import * as SystemUI from 'expo-system-ui';
+import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { Stack } from 'expo-router';
@@ -10,9 +11,14 @@ import { Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
+
 export default function Layout() {
   useEffect(() => {
     SystemUI.setBackgroundColorAsync('#0C0F14'); // match your app’s theme
+  }, []);
+   useEffect(() => {
+    // Set navigation bar background color (e.g., black)
+    NavigationBar.setBackgroundColorAsync('#000000');
   }, []);
 
   return (
