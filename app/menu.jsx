@@ -18,13 +18,18 @@ import CappuccinoCaramel from "../assets/CappuccinoCaramel.jpg";
 import Cappuccino from "../assets/Cappuccino.jpg";
 import Icedcoffee from "../assets/Icedcoffee.jpg";
 import turkish from "../assets/turkish.jpg";
+import { Entypo } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 import { useRouter } from "expo-router";
 
 export default function Menu() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+
 
   const coffeeProducts = [
     {
@@ -243,21 +248,18 @@ export default function Menu() {
           </ScrollView>
 
           {/* BOTTOM NAVIGATION BAR */}
-          <View style={styles.bottomNav}>
-            <TouchableOpacity 
-              style={styles.navButton} 
-              onPress={handleGoHome}
-            >
-              <Text style={styles.navText}>Home</Text>
-            </TouchableOpacity>
+<View style={[styles.bottomNav, { marginBottom: insets.bottom + 10 }]}>
+  <TouchableOpacity onPress={handleGoHome} style={styles.navButton}>
+    <Entypo name="home" size={28} color="#D17842" />
+    <Text style={styles.navText}>Home</Text>
+  </TouchableOpacity>
 
-            <TouchableOpacity 
-              style={styles.navButton} 
-              onPress={handleGoToCart}
-            >
-              <Text style={styles.navText}>Cart</Text>
-            </TouchableOpacity>
-          </View>
+  <TouchableOpacity onPress={handleGoToCart} style={styles.navButton}>
+    <Entypo name="shopping-cart" size={28} color="#D17842" />
+    <Text style={styles.navText}>Cart</Text>
+  </TouchableOpacity>
+</View>
+
         </View>
       </ImageBackground>
     </View>
@@ -402,29 +404,35 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   bottomNav: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 70,
-    backgroundColor: "#0C0F14",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    borderTopWidth: 1,
-    borderTopColor: "#252A32",
-    paddingBottom: 10,
-  },
-  navButton: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 8,
-  },
- 
-  navText: {
-    color: "#AEAEAE",
-    fontSize: 20,
-    fontWeight: "bold",
+  position: "absolute",
+  bottom: -17,
+  left: 0,
+  right: 0,
+  height: 60,
+  backgroundColor: "#0C0F14", // dark background
+  flexDirection: "row",
+  justifyContent: "space-evenly", // evenly space icons
+  alignItems: "center",
+  borderTopWidth: 1,
+  borderTopColor: "#252A32",
+  borderTopLeftRadius: 20,
+  borderTopRightRadius: 20,
+  elevation: 10, // for Android shadow
+  shadowColor: "#000",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: -2 },
+  shadowRadius: 5,
+},
 
-  },
+navButton: {
+  alignItems: "center",
+  justifyContent: "center",
+},
+
+navText: {
+  color: "#D17842",
+  fontSize: 12,
+  marginTop: 4,
+},
+
 });
