@@ -1,13 +1,12 @@
 
-// ============================================ 7d020c70bc3aba90219784351c936854547dd18b
 // APP LAYOUT - NAVIGATION CONFIGURATION
-// ============================================
-
+import * as NavigationBar from 'expo-navigation-bar';
 import * as SystemUI from 'expo-system-ui';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { Platform } from 'react-native';
+
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
