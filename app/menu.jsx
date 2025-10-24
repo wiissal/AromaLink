@@ -18,9 +18,8 @@ import CappuccinoCaramel from "../assets/CappuccinoCaramel.jpg";
 import Cappuccino from "../assets/Cappuccino.jpg";
 import Icedcoffee from "../assets/Icedcoffee.jpg";
 import turkish from "../assets/turkish.jpg";
-import { Entypo } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
+import { Entypo } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useRouter } from "expo-router";
 
@@ -29,7 +28,6 @@ export default function Menu() {
   const insets = useSafeAreaInsets();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  
 
   const coffeeProducts = [
     {
@@ -228,7 +226,9 @@ export default function Menu() {
 
                   <View style={styles.productInfo}>
                     <Text style={styles.productName}>{product.name}</Text>
-                    <Text style={styles.productSubtitle}>{product.subtitle}</Text>
+                    <Text style={styles.productSubtitle}>
+                      {product.subtitle}
+                    </Text>
 
                     <View style={styles.priceRow}>
                       <Text style={styles.price}>
@@ -251,17 +251,19 @@ export default function Menu() {
           </ScrollView>
 
           {/* BOTTOM BUTTONS - Home & Cart */}
-<View style={[styles.bottomNav, { marginBottom: insets.bottom + 10 }]}>
-  <TouchableOpacity onPress={handleGoHome} style={styles.navButton}>
-    <Entypo name="home" size={28} color="#D17842" />
-    <Text style={styles.navText}>Home</Text>
-  </TouchableOpacity>
+          <View
+            style={[styles.bottomNav, { marginBottom: insets.bottom + 10 }]}
+          >
+            <TouchableOpacity onPress={handleGoHome} style={styles.navButton}>
+              <Entypo name="home" size={28} color="#D17842" />
+              <Text style={styles.navText}>Home</Text>
+            </TouchableOpacity>
 
-  <TouchableOpacity onPress={handleGoToCart} style={styles.navButton}>
-    <Entypo name="shopping-cart" size={28} color="#D17842" />
-    <Text style={styles.navText}>Cart</Text>
-  </TouchableOpacity>
-</View>
+            <TouchableOpacity onPress={handleGoToCart} style={styles.navButton}>
+              <Entypo name="shopping-cart" size={28} color="#D17842" />
+              <Text style={styles.navText}>Cart</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -419,35 +421,35 @@ const styles = StyleSheet.create({
     borderTopColor: "#252A32",
   },
   bottomNav: {
-  position: "absolute",
-  bottom: -17,
-  left: 0,
-  right: 0,
-  height: 60,
-  backgroundColor: "#0C0F14", // dark background
-  flexDirection: "row",
-  justifyContent: "space-evenly", // evenly space icons
-  alignItems: "center",
-  borderTopWidth: 1,
-  borderTopColor: "#252A32",
-  borderTopLeftRadius: 20,
-  borderTopRightRadius: 20,
-  elevation: 10, // for Android shadow
-  shadowColor: "#000",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: -2 },
-  shadowRadius: 5,
-},
-navButton: {
-  alignItems: "center",
-  justifyContent: "center",
-},
+    position: "absolute",
+    bottom: -17,
+    left: 0,
+    right: 0,
+    height: 60,
+    backgroundColor: "#0C0F14", // dark background
+    flexDirection: "row",
+    justifyContent: "space-evenly", // evenly space icons
+    alignItems: "center",
+    borderTopWidth: 1,
+    borderTopColor: "#252A32",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    elevation: 10, // for Android shadow
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: -2 },
+    shadowRadius: 5,
+  },
+  navButton: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-navText: {
-  color: "#D17842",
-  fontSize: 12,
-  marginTop: 4,
-},  
+  navText: {
+    color: "#D17842",
+    fontSize: 12,
+    marginTop: 4,
+  },
   buttonText: {
     color: "#FFFFFF",
     fontSize: 15,

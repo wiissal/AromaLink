@@ -5,7 +5,6 @@
 
 import React, { useEffect } from 'react';
 import * as SystemUI from 'expo-system-ui';
-import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
 import { Platform, View, StyleSheet } from 'react-native';
 import { Stack } from 'expo-router';
